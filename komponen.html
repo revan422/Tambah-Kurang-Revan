@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Belajar React Manual</title>
+    <script src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <style>
+      .heading {
+        color: blue;
+        font-family: Arial, sans-serif;
+      }
+      p {
+        cursor: pointer;
+        color: green;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="root"></div>
+
+    <script type="text/babel">
+      const container = document.getElementById("root");
+      const root = ReactDOM.createRoot(container);
+
+      function Header({author}) {
+        return (
+          <>
+            <h1 className="heading">
+              Belajar react manual bersama pak Mirza 🌍{author ? author : "Rizki"}
+            </h1>
+            <p onClick={e => { alert('ok') }}>Semangat!</p>
+          </>
+        );
+      }
+
+      function HomePage() {
+        const students = ["Mas Yusuf","Mas Dzikri","Ang Revan"];
+        const [likes, setLikes] = React.useState(0);
+        function handleplus() {
+            setLikes(likes + 1);
+
+        }
+        function handleminus() {
+            setLikes(likes - 1);
+        }
+        function handleReset() {
+            setLikes(0);
+        }
+        return (
+          <>
+            <Header />
+            <Header author="Revan" />
+            <ul>
+                {students.map((student) => (
+                    <li key= {"student"}>{student}</li>
+                ))}
+                </ul>
+                <button onClick={handleplus}> + </button>
+                <p>{likes}</p>
+                <button onClick={handleminus}> - </button>
+
+                <button onClick={handleReset}> Reset </button>
+          </>
+        );
+      }
+
+      root.render(<HomePage />);
+    </script>
+  </body>
+</html>
